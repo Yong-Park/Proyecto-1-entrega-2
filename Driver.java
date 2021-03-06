@@ -14,7 +14,9 @@ class Driver{
                 System.out.println(resultado);
             //Defun
             }else if(opcion==2){
-
+                Defun defun = new Defun();
+                String resultado =  defun.funcion();
+                System.out.println(resultado);
             //Predicado
             }else if(opcion==3){
                 
