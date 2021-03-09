@@ -1,7 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
+import java.util.Collections;
 
 public class Defun {
     public String funcion(ArrayList<String> ope){
@@ -37,14 +36,15 @@ public class Defun {
         System.out.println("Ingrese el dato de " + ope.get(2));
         float valorFuncion = scanner.nextFloat();
         numeros.set(0, valorFuncion);
+        Collections.reverse(numeros);
         //operar
         do{
             //revisar si ya hay dos datos y en caso que si revisar tambien si ya hay algun operando
             if(numeros.size()>=2 && signos.size()>=1){
                 //operar
-                num1 = numeros.get(0);
+                num1 = numeros.get(numeros.size()-1);
                 numeros.remove(num1);
-                num2 = numeros.get(0);
+                num2 = numeros.get(numeros.size()-1);
                 numeros.remove(num2);
                 operacion = signos.get(signos.size()-1);
                 signos.remove(operacion);
@@ -54,7 +54,7 @@ public class Defun {
                 }else if(operacion.equals("-")){
                     resultado = num1 - num2; 
                 }else if(operacion.equals("/")){
-                    resultado = num2 / num1;
+                    resultado = num1 / num2;
                 }else if(operacion.equals("*")){
                     resultado = num1 * num2;
                 }
@@ -64,6 +64,8 @@ public class Defun {
                 ciclo=false;
             }
         }while(ciclo);
+
+
 
         //resultado
         if(numeros.size()>=2){

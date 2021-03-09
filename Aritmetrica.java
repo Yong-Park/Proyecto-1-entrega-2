@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Aritmetrica {
     public String operacion(ArrayList<String> ope){
@@ -24,29 +25,31 @@ public class Aritmetrica {
                     
                 }
             }
-            //revisar si ya hay dos datos y en caso que si revisar tambien si ya hay algun operando
-            if(numeros.size()>=2 && signos.size()>=1){
-                //operar
-                num1 = numeros.get(0);
-                numeros.remove(num1);
-                num2 = numeros.get(0);
-                numeros.remove(num2);
-                operacion = signos.get(signos.size()-1);
-                signos.remove(operacion);
-                //operar segun el signo
-                if(operacion.equals("+")){
-                    resultado = num1 + num2;
-                }else if(operacion.equals("-")){
-                    resultado = num1 - num2; 
-                }else if(operacion.equals("/")){
-                    resultado = num1 / num2;
-                }else if(operacion.equals("*")){
-                    resultado = num1 * num2;
-                }
-                //agregar el resultado al stack
-                numeros.add(resultado);
-            }
         }
+        Collections.reverse(numeros);
+        //revisar si ya hay dos datos y en caso que si revisar tambien si ya hay algun operando
+        do{
+            //operar
+            num1 = numeros.get(numeros.size()-1);
+            numeros.remove(num1);
+            num2 = numeros.get(numeros.size()-1);
+            numeros.remove(num2);
+            operacion = signos.get(signos.size()-1);
+            signos.remove(operacion);
+            //operar segun el signo
+            if(operacion.equals("+")){
+                resultado = num1 + num2;
+            }else if(operacion.equals("-")){
+                resultado = num1 - num2; 
+            }else if(operacion.equals("/")){
+                resultado = num1 / num2;
+            }else if(operacion.equals("*")){
+                resultado = num1 * num2;
+            }
+            //agregar el resultado al stack
+            numeros.add(resultado);  
+        }while(!signos.isEmpty());
+        
         //resultado
         if(numeros.size()>=2){
             return "Este no se puede operar";
