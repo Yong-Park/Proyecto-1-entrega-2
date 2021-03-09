@@ -13,14 +13,19 @@ public class Defun {
         //arraylist para los numeros y otro para el signo
         ArrayList<Float> numeros = new ArrayList<Float>();
         ArrayList<String> signos = new ArrayList<String>();
-
+        ArrayList<String> defun = new ArrayList<String>();
+        //separar la defun por su inicial y luego con su operacion
+        for(int i=0; i<3; i++){;
+            defun.add(ope.get(0));
+            ope.remove(ope.get(0));
+        }
         for(int i=0; i<ope.size();i++){
             //obtener segun la variable
             String s =ope.get(i);
             if(s.equals("+") || s.equals("-") || s.equals("*") || s.equals("/")){
                 signos.add(s);
             }else{
-                if(s.equals("Defun")){
+                if(s.equals(defun.get(2))){
                     numeros.add(0f);
                 }
                 float f; 
@@ -35,7 +40,12 @@ public class Defun {
         //pedirle que ingrese el dato para operar
         System.out.println("Ingrese el dato de " + ope.get(2));
         float valorFuncion = scanner.nextFloat();
-        numeros.set(0, valorFuncion);
+        for(int i=0; i<numeros.size(); i++){
+            if(numeros.get(i)==0){
+                numeros.set(i, valorFuncion);
+            }
+        }
+        System.out.println(numeros);
         Collections.reverse(numeros);
         //operar
         do{

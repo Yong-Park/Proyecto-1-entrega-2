@@ -34,7 +34,6 @@ class Driver{
                 //revisar el tipo de intruccion que es para realizar la funcion adecuada
                 int opcion = verificar(operandos);
                 //correr segun el tipo
-                System.out.println(operandos);
                 //Aritmetrica
                 if(opcion==0){
                     Aritmetrica art = new Aritmetrica();
