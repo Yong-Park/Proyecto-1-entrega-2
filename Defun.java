@@ -4,58 +4,7 @@ import java.util.List;
 import java.util.Arrays;
 
 public class Defun {
-    public String funcion(){
-        ArrayList<String> operandos = new ArrayList<String>();
-        List<String> al = new ArrayList<String>();
-        //ingresar el codigo que desee y convertirlo en un arraylist
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Ingresa el codigo: ");
-        String data = scanner.nextLine();
-        String[] str = data.split(" ");
-	    al = Arrays.asList(str);
-        for(String s: al){
-            if(s.equals("(")){
-
-            }else if(s.equals(")")){
-
-            }else{
-                operandos.add(s);
-            }
-        }
-        //revisar
-        boolean revision = verificar(operandos);
-        //si es FALSE regresar que no es un dato aritmetrico, de lo contrario operar
-        if(revision==true){
-            //operar
-            String resultado= operar(operandos);
-            return resultado;
-        }else{
-            return "Este no es una operacion Aritmetrica";
-        }
-    }
-
-    public boolean verificar(ArrayList<String> ope){
-        //verificar que solo sea Aritmetrica el codigo ingresado
-        boolean resultado = true;
-        if(ope.contains("Defun")){
-            return resultado;
-        }else if(ope.contains(">")){
-            resultado = false;
-        }else if(ope.contains("<")){
-            resultado = false;
-        }else if(ope.contains("=")){
-            resultado = false;
-        }else if(ope.contains("atom")){
-            resultado = false;
-        }else if(ope.contains("setq")){
-            resultado = false;
-        }else{
-            resultado = false;
-        }
-        return resultado;
-    }
-
-    public String operar(ArrayList<String> ope){
+    public String funcion(ArrayList<String> ope){
         Float num1 = 0f;
         Float num2=0f;
         String operacion;
@@ -122,8 +71,6 @@ public class Defun {
         }else{
             String resultadoTexto = String.valueOf(resultado);
             return resultadoTexto;
-        }
-        
-    
-    }
+        }    
+    }   
 }
