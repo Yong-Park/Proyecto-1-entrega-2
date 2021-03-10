@@ -138,12 +138,8 @@ class Driver{
         }else if(ope.contains("setq")){
             resultado = 4;
             return resultado;
-<<<<<<< HEAD
-        }else if(ope.contains("quote") || ope.contains("´")){
-=======
         }
         else if(ope.contains("quote") || ope.contains("´")){
->>>>>>> 5efce6355e4333c824ab504d434f01d74b2cb1b0
             resultado = 5;
             return resultado;
         }else if(ope.isEmpty()){
