@@ -9,7 +9,7 @@ public class Quote {
         else{
             System.out.println("Syntax Error");
         }
-        
+
         return  resultado;
     }
 }

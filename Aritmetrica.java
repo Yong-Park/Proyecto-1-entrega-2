@@ -31,9 +31,9 @@ public class Aritmetrica {
         do{
             //operar
             num1 = numeros.get(numeros.size()-1);
-            numeros.remove(num1);
+            numeros.remove(numeros.size()-1);
             num2 = numeros.get(numeros.size()-1);
-            numeros.remove(num2);
+            numeros.remove(numeros.size()-1);
             operacion = signos.get(signos.size()-1);
             signos.remove(operacion);
             //operar segun el signo
