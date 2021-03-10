@@ -53,8 +53,13 @@ class Driver{
                 //SETQ
                 }else if(opcion==4){
                     
-                //Salir
+                //Quote
                 }else if(opcion==5){
+                    Quote quote = new Quote();
+                    String resultado = quote.opQuote(data);
+                    System.out.println(resultado);
+                //Salir
+                }else if(opcion==6){
                     System.out.println("Gracias espero que vuelvas pronto");
                     ciclo=false;
                 }
@@ -101,8 +106,12 @@ class Driver{
         }else if(ope.contains("setq")){
             resultado = 4;
             return resultado;
-        }else if(ope.isEmpty()){
+        }
+        else if(ope.contains("quote") || ope.contains("´")){
             resultado = 5;
+            return resultado;
+        }else if(ope.isEmpty()){
+            resultado = 6;
             return resultado;
         }
         return resultado;
