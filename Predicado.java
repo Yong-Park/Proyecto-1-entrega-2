@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.Collections;
+
+
 public class Predicado{
 
     public String equal (ArrayList<String> dato){
