@@ -54,8 +54,6 @@ class Driver{
                     }
                 }
 
-                System.out.println("Estos son los keysets del map: " + funciones.keySet());
-                System.out.println("Estos son los values del map: " + funciones.values());
                 //si hay la misma cantidad de parentesis correr la funcion
                 if(derecha.size()==izquierda.size()){
                     System.out.println("Cantidad de parentesis correcta");
@@ -138,8 +136,7 @@ class Driver{
         }else if(ope.contains("setq")){
             resultado = 4;
             return resultado;
-        }
-        else if(ope.contains("quote") || ope.contains("´")){
+        }else if(ope.contains("quote") || ope.contains("'")){
             resultado = 5;
             return resultado;
         }else if(ope.isEmpty()){
