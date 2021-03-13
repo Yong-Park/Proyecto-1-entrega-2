@@ -14,10 +14,13 @@ class Driver{
             //ingresar el codigo
             ArrayList<String> operandos = new ArrayList<String>();
             ArrayList<String> revision = new ArrayList<String>();
+            ArrayList<String> revisionNumericos = new ArrayList<String>();
+            ArrayList<String> revisionRecursividad = new ArrayList<String>();
             ArrayList<String> comparar = new ArrayList<String>();
             ArrayList<String> derecha = new ArrayList<String>();
             ArrayList<String> izquierda = new ArrayList<String>();
             List<String> al = new ArrayList<String>();
+            boolean listas = false;
             //ingresar el codigo que desee y convertirlo en un arraylist
             Scanner scanner = new Scanner(System.in);
             System.out.println("Ingresa el codigo: ");
@@ -42,6 +45,12 @@ class Driver{
                         revision.add(operandos.get(i));
                     }
                 }
+                //para guardar datos numericos
+                for(int i=0; i< operandos.size();i++){
+                    if(isNumeric(operandos.get(i))){
+                        revisionNumericos.add(operandos.get(i));
+                    }
+                }
                 //revisar si esta el map y dependiendo de ello
                 if(funciones.keySet().size()>0 && !revision.isEmpty()){
                     if(funciones.keySet().contains(revision.get(0))){
@@ -49,16 +58,62 @@ class Driver{
                         //si tiene defun
                         if(comparar.contains("Defun")){
                             System.out.println("Esta funcion esta guardada");
-                            operandos = funciones.get(revision.get(0));
+                            //si usa el mismo nombre pero tiene un contenido distinto
+                            if(revision.size()>1){
+                                funciones.replace(revision.get(0), operandos);
+                            }else{
+                                //no cambia el contenido y solo se le llama
+                                operandos = funciones.get(revision.get(0));
+                                //guardar la funcion para ver si tiene recursividad
+                                for(int i=3; i< operandos.size(); i++){
+                                    revisionRecursividad.add(operandos.get(i));
+                                }
+                                //verificar si en el codigo en si tiene llamada la misma funcion en caso afirmativo
+                                //cambiar el dato
+                                if(revisionRecursividad.contains(revision.get(0))){
+                                    
+                                }
+                            }
+                            
+                        }
+                        //para ver si tiene alguna variable y en caso afirmativo asignarlos
+                        for(int i=0;i<operandos.size();i++){
+                            //afirmar que contiene una de las variables puestas
+                            if(funciones.keySet().contains(operandos.get(i))){
+                                StringBuffer sb = new StringBuffer();
+                                System.out.println(operandos.get(i));
+                                for (String s : funciones.get(operandos.get(i))) {
+                                    System.out.println("todos los datos: " + s);
+                                    if(isNumeric(s)){
+                                        sb.append(s);
+                                        
+                                        String strconv = sb.toString();
+                                        System.out.println("Solo el dato numerico: " + strconv);
+                                        operandos.set(i, strconv);
+                                        
+                                    }
+                                }
+                            }
                         }
                     }
                 }
+                /*System.out.println("Esto es de lo de operandos pero sin sus defun y asi: " + revisionRecursividad);
+                System.out.println("Esto es de lo operandos: " + operandos);
+                System.out.println("Esto es de la revision: " + revision);
+                System.out.println("Esto es de la revision de los numeros: " + revisionNumericos);
+                System.out.println("Esto es el keyset del map: " + funciones.keySet());
+                System.out.println("Esto es el value del map: " + funciones.values());*/
 
                 //si hay la misma cantidad de parentesis correr la funcion
                 if(derecha.size()==izquierda.size()){
+                    //revisar si tiene 0 parentesis
+                    if(derecha.size()==0 && izquierda.size()==0){
+                        //este sera una lista
+                        listas=true;
+                    }
                     System.out.println("Cantidad de parentesis correcta");
                     //revisar el tipo de intruccion que es para realizar la funcion adecuada
-                    int opcion = verificar(operandos);
+                    int opcion = verificar(operandos, listas);
                     //correr segun el tipo
 
                     //Aritmetrica
@@ -81,11 +136,23 @@ class Driver{
                         
                     //SETQ
                     }else if(opcion==4){
-                        
+                        //agregar al map
+                        for(int i=0; i < revision.size();i++){
+                            ArrayList<String> valor = new ArrayList<String>();
+                            valor.add(revisionNumericos.get(i));
+                            funciones.put(revision.get(i), valor);
+                            //mostrar el resultado de setq
+                            System.out.println(revision.get(i) + "=" + funciones.get(revision.get(i)));
+                        }
                     //Quote
                     }else if(opcion ==5){
                         Quote quote = new Quote();
                         String resultado = quote.opQuote(data);
+                        System.out.println(resultado);
+                    //listas
+                    }else if(opcion == 7){
+                        Lista lis = new Lista();
+                        ArrayList<String> resultado = lis.ConvertirLista(operandos);
                         System.out.println(resultado);
                     }
                 }else{
@@ -115,7 +182,7 @@ class Driver{
     }
     
     //revisar
-    public static int verificar(ArrayList<String> ope){
+    public static int verificar(ArrayList<String> ope, boolean list){
         //regresa  si no es ninguno de estos y seria una aritmetrica
         int resultado = 0;
         if(ope.contains("Defun")){
@@ -142,6 +209,9 @@ class Driver{
         }else if(ope.isEmpty()){
             resultado = 6;
             return resultado;
+        }else if(list==true){
+            resultado = 7 ;
+            return resultado;
         }
         return resultado;
         
@@ -157,4 +227,3 @@ class Driver{
         }  
       }
 }
-
