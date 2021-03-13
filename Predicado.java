@@ -8,7 +8,7 @@ public class Predicado{
         Float num1 = 0f;
         Float num2=0f;
         String igualar="";
-        String resultado = "";
+        Float resultado = "";
         //arraylist para los numeros y otro para el signo
         ArrayList<Float> numeros = new ArrayList<Float>();
         ArrayList<String> signos = new ArrayList<String>();
@@ -41,19 +41,19 @@ public class Predicado{
             //operar segun el signo
             if(igualar.equals(">")){
                 if (num1 > num2){
-                    resultado = num1 + "es Mayor que " + num2;
+                    resultado = Float.parseFloat(num1 + "es Mayor que " + num2);
                 }
                 
             }else if(igualar.equals("<")){
                 if (num1 < num2){
-                    resultado = num1 + "es Mayor que " + num2;
+                    resultado = Float.parseFloat(num1 + "es Mayor que " + num2);
                 }
             }else if(igualar.equals("=")){
                 if (num1 == num2){
-                    resultado = num1 + "es Igual que " + num2;
+                    resultado = Float.parseFloat(num1 + "es Igual que " + num2);
                 }
                 else if (num1 != num2){
-                    resultado = num1 + "NO es Igual que " + num2;
+                    resultado = Float.parseFloat(num1 + "NO es Igual que " + num2);
                 }
             }
 
