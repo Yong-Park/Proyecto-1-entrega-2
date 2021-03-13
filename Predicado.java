@@ -1,7 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 public class Predicado{
 
     public String equal (ArrayList<String> dato){
@@ -50,13 +49,16 @@ public class Predicado{
                     resultado = num1 + "es Mayor que " + num2;
                 }
             }else if(igualar.equals("=")){
-                if (num1 < num2){
+                if (num1 == num2){
                     resultado = num1 + "es Igual que " + num2;
+                }
+                else if (num1 != num2){
+                    resultado = num1 + "NO es Igual que " + num2;
                 }
             }
 
             //agregar el resultado al stack
-            numeros.add(resultado);  
+            numeros.add(resultado);
         }while(!signos.isEmpty());
         
         //resultado
@@ -68,4 +70,7 @@ public class Predicado{
         }
         return a; 
     }
+
+    
+
 }
