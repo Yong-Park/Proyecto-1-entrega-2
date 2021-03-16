@@ -51,6 +51,7 @@ class Driver{
                         revisionNumericos.add(operandos.get(i));
                     }
                 }
+                
                 //revisar si esta el map y dependiendo de ello
                 if(funciones.keySet().size()>0 && !revision.isEmpty()){
                     if(funciones.keySet().contains(revision.get(0))){
@@ -64,6 +65,7 @@ class Driver{
                             }else{
                                 //no cambia el contenido y solo se le llama
                                 operandos = funciones.get(revision.get(0));
+                                //revisar si esto de abajo me sirve o lo llego a utilizar
                                 //guardar la funcion para ver si tiene recursividad
                                 for(int i=3; i< operandos.size(); i++){
                                     revisionRecursividad.add(operandos.get(i));
@@ -73,36 +75,26 @@ class Driver{
                                 if(revisionRecursividad.contains(revision.get(0))){
                                     
                                 }
-                            }
-                            
-                        }
-                        //para ver si tiene alguna variable y en caso afirmativo asignarlos
-                        for(int i=0;i<operandos.size();i++){
-                            //afirmar que contiene una de las variables puestas
-                            if(funciones.keySet().contains(operandos.get(i))){
-                                StringBuffer sb = new StringBuffer();
-                                System.out.println(operandos.get(i));
-                                for (String s : funciones.get(operandos.get(i))) {
-                                    System.out.println("todos los datos: " + s);
-                                    if(isNumeric(s)){
-                                        sb.append(s);
-                                        
-                                        String strconv = sb.toString();
-                                        System.out.println("Solo el dato numerico: " + strconv);
-                                        operandos.set(i, strconv);
-                                        
-                                    }
+                            }   
+                        }else{
+                            //revisar si tiene alguna varibale que ya este guardada
+                            for(int i=0;i<operandos.size();i++){
+                                if(funciones.keySet().contains(operandos.get(i))){
+                                    String var = funciones.get(operandos.get(i)).toString();
+                                    var = var.replace("[", "");
+                                    var = var.replace("]", "");
+                                    operandos.set(i, var);
                                 }
                             }
-                        }
+                        }  
                     }
                 }
-                /*System.out.println("Esto es de lo de operandos pero sin sus defun y asi: " + revisionRecursividad);
+                System.out.println("Esto es de lo de operandos pero sin sus defun y asi: " + revisionRecursividad);
                 System.out.println("Esto es de lo operandos: " + operandos);
                 System.out.println("Esto es de la revision: " + revision);
                 System.out.println("Esto es de la revision de los numeros: " + revisionNumericos);
                 System.out.println("Esto es el keyset del map: " + funciones.keySet());
-                System.out.println("Esto es el value del map: " + funciones.values());*/
+                System.out.println("Esto es el value del map: " + funciones.values());
 
                 //si hay la misma cantidad de parentesis correr la funcion
                 if(derecha.size()==izquierda.size()){
@@ -115,7 +107,6 @@ class Driver{
                     //revisar el tipo de intruccion que es para realizar la funcion adecuada
                     int opcion = verificar(operandos, listas);
                     //correr segun el tipo
-
                     //Aritmetrica
                     if(opcion==0){
                         Aritmetrica art = new Aritmetrica();
@@ -124,7 +115,11 @@ class Driver{
                     //Defun
                     }else if(opcion==1){
                         //agregar al map
-                        funciones.put(revision.get(0), operandos);
+                        if(funciones.keySet().contains(revision.get(0))){
+                            
+                        }else{
+                            funciones.put(revision.get(0), operandos);
+                        }
                         Defun defun = new Defun();
                         String resultado =  defun.funcion(operandos);
                         System.out.println(resultado);
