@@ -3,7 +3,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Defun {
-    public String funcion(ArrayList<String> ope){
+    static ArrayList<String> condicionNumero = new ArrayList<String>();
+      static String funcion(ArrayList<String> ope){
         Float num1 = 0f;
         Float num2=0f;
         String operacion;
@@ -13,7 +14,7 @@ public class Defun {
         ArrayList<String> operaciones = new ArrayList<String>();
         ArrayList<String> cond = new ArrayList<String>();
         ArrayList<String> condiciones = new ArrayList<String>();
-        ArrayList<String> condSeparado = new ArrayList<String>();
+        ArrayList<String> condSeparado = new ArrayList<String>(); 
         boolean ciclo =true;
         boolean condicion = false;
         //arraylist para los numeros y otro para el signo
@@ -64,9 +65,7 @@ public class Defun {
             for(int i=0;i<operaciones.size();i++){
                 if(operaciones.get(i).equals("t")){
                     condicion=true;
-                    if(condicion==true){
-                        //no pasara nada
-                    }
+                    
                 //agregar estos que son parte de la condicion antes de la operacion
                 }else{
                     if(condicion==false){
@@ -74,11 +73,15 @@ public class Defun {
                     }
                 }
             }
-            
+           
             //separar los condiciones
             do{
                 condSeparado.add(cond.get(0));
+                if(isNumeric(cond.get(0))){
+                    condicionNumero.add(cond.get(0));
+                }
                 cond.remove(0);
+                
                 contador++;
                 if(contador==4){
                     condiciones.add(condSeparado.toString());
@@ -86,11 +89,19 @@ public class Defun {
                     contador=0;
                 }                    
             }while(cond.size()!=0);
-
+            //agregar los datos que son numericos
+            /*System.out.println("Del cond separado " + condSeparado);
+            for(int i=0 ; i<condSeparado.size(); i++){
+                if(isNumeric(condSeparado.get(i))){
+                    System.out.println("es una condicion "+condSeparado.get(i));
+                    condicionNumero.add(condSeparado.get(i));
+                }
+            }*/
             //dependiendo del tamano ejecutar fibonacci o factorial
             ArrayList<Integer> cadenaResultado = new ArrayList<Integer>();
             if(condiciones.size()==2){
                 //fibonacci
+                //enviar mas datos
                 for(int l=0 ; l<(int)valorFuncion ; l++){
                     cadenaResultado.add(fibonacci(l));
                 }
@@ -142,15 +153,16 @@ public class Defun {
     }
     
     //metodo de fibonacci
-    int fibonacci(int n){
+    
+    public static int fibonacci (int n){
         if (n>1){
             return fibonacci(n-1) + fibonacci(n-2);  //función recursiva
         }
-        else if (n==1) {  // caso base
-            return 1;
+        else if (n==Integer.parseInt(condicionNumero.get(0))) {  // caso base
+            return Integer.parseInt(condicionNumero.get(1));
         }
-        else if (n==0){  // caso base
-            return 0;
+        else if (n==Integer.parseInt(condicionNumero.get(2))){  // caso base
+            return Integer.parseInt(condicionNumero.get(3));
         }
         else{ //error
             System.out.println("Debes ingresar un tamaño mayor o igual a 1");
@@ -159,11 +171,21 @@ public class Defun {
     }
 
     //metodo de factorial
-    public int factorial(int num){
-        if(num == 0){
-            return 1;
+    public static int factorial(int num){
+        if(num == Integer.parseInt(condicionNumero.get(0))){
+            return Integer.parseInt(condicionNumero.get(1));
         }
         else
             return num * factorial(num-1);
     }
+
+    //is numeric
+    public static boolean isNumeric(String str) { 
+        try {  
+          Double.parseDouble(str);  
+          return true;
+        } catch(NumberFormatException e){  
+          return false;  
+        }  
+      }
 }
