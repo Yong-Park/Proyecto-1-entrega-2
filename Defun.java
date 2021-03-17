@@ -105,11 +105,13 @@ public class Defun {
                 for(int l=0 ; l<(int)valorFuncion ; l++){
                     cadenaResultado.add(fibonacci(l));
                 }
+                condicionNumero.clear();
                 String resultadoTexto = cadenaResultado.toString();
                 return resultadoTexto;
             }else if(condiciones.size()==1){
                 //factorial
                 String resultadoTexto = String.valueOf(factorial((int)valorFuncion));
+                condicionNumero.clear();
                 return resultadoTexto;
             }
             return "Este no se puede operar";
