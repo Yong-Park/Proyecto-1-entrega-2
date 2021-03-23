@@ -4,6 +4,11 @@ import java.util.Collections;
 
 public class Defun {
     static ArrayList<String> condicionNumero = new ArrayList<String>();
+      
+      /** 
+       * @param ope
+       * @return String
+       */
       static String funcion(ArrayList<String> ope){
         Float num1 = 0f;
         Float num2=0f;
@@ -154,6 +159,11 @@ public class Defun {
         }
     }
     
+    
+    /** 
+     * @param n
+     * @return int
+     */
     //metodo de fibonacci
     
     public static int fibonacci (int n){
@@ -172,6 +182,11 @@ public class Defun {
         }
     }
 
+    
+    /** 
+     * @param num
+     * @return int
+     */
     //metodo de factorial
     public static int factorial(int num){
         
@@ -182,6 +197,11 @@ public class Defun {
             return num * factorial(num-1);
     }
 
+    
+    /** 
+     * @param str
+     * @return boolean
+     */
     //is numeric
     public static boolean isNumeric(String str) { 
         try {  

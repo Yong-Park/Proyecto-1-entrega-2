@@ -2,6 +2,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Aritmetrica {
+    
+    /** 
+     * @param ope
+     * @return String
+     */
     public String operacion(ArrayList<String> ope){
         Float num1 = 0f;
         Float num2=0f;

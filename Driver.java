@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.HashMap;
 class Driver{
+    
+    /** 
+     * @param args
+     */
     //correr el programa
     public static void main (String[] args){
         HashMap <String, ArrayList<String>> funciones = new HashMap<String, ArrayList<String>>();
@@ -181,6 +185,12 @@ class Driver{
         System.out.println("-------------------");
     }
     
+    
+    /** 
+     * @param ope
+     * @param list
+     * @return int
+     */
     //revisar
     public static int verificar(ArrayList<String> ope, boolean list){
         //regresa  si no es ninguno de estos y seria una aritmetrica
@@ -220,6 +230,11 @@ class Driver{
         
     }
 
+    
+    /** 
+     * @param str
+     * @return boolean
+     */
     //is numeric
     public static boolean isNumeric(String str) { 
         try {  

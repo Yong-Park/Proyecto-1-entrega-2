@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 public class ATOM {
 
+    
+    /** 
+     * @param dato
+     * @return String
+     */
     public String validar (ArrayList<String> dato){
 
         //arraylist para agregar la palabra atom y dejar solo el valor

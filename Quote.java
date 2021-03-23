@@ -1,4 +1,9 @@
 public class Quote {
+    
+    /** 
+     * @param aString
+     * @return String
+     */
     public String opQuote (String aString){
         char ch  = aString.charAt(0);
         String resultado = "Este no es";

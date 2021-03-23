@@ -3,6 +3,11 @@ import java.util.Collections;
 
 public class Predicado{
 
+    
+    /** 
+     * @param dato
+     * @return String
+     */
     public String revisar (ArrayList<String> dato){
         
         String data1;
@@ -92,6 +97,11 @@ public class Predicado{
         return "no se puede"; 
     }
 
+    
+    /** 
+     * @param str
+     * @return boolean
+     */
     //is numeric
     public static boolean isNumeric(String str) { 
         try {  
