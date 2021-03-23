@@ -1,3 +1,9 @@
+/*
+Integrantes
+Yong Bum Park, 20117
+Jorge Caballeros Pérez, 20079
+Rolando Natanael Girón, 20029
+*/ 
 import java.util.ArrayList;
 public class ATOM {
 
