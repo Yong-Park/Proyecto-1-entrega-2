@@ -157,23 +157,24 @@ public class Defun {
     //metodo de fibonacci
     
     public static int fibonacci (int n){
-        if (n>1){
-            return fibonacci(n-1) + fibonacci(n-2);  //función recursiva
-        }
-        else if (n==Integer.parseInt(condicionNumero.get(0))) {  // caso base
+        
+        if (n==Integer.parseInt(condicionNumero.get(0))) {  // caso base
             return Integer.parseInt(condicionNumero.get(1));
         }
         else if (n==Integer.parseInt(condicionNumero.get(2))){  // caso base
             return Integer.parseInt(condicionNumero.get(3));
         }
         else{ //error
-            System.out.println("Debes ingresar un tamaño mayor o igual a 1");
-            return -1; 
+            
+            return fibonacci(n-1) + fibonacci(n-2);  //función recursiva
+            //System.out.println("Debes ingresar un tamaño mayor o igual a 1");
+            //return -1; 
         }
     }
 
     //metodo de factorial
     public static int factorial(int num){
+        
         if(num == Integer.parseInt(condicionNumero.get(0))){
             return Integer.parseInt(condicionNumero.get(1));
         }

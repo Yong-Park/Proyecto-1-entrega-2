@@ -95,7 +95,7 @@ class Driver{
                 System.out.println("Esto es de la revision de los numeros: " + revisionNumericos);
                 System.out.println("Esto es el keyset del map: " + funciones.keySet());
                 System.out.println("Esto es el value del map: " + funciones.values());*/
-
+                System.out.println(operandos);
                 //si hay la misma cantidad de parentesis correr la funcion
                 if(derecha.size()==izquierda.size()){
                     //revisar si tiene 0 parentesis
@@ -125,10 +125,15 @@ class Driver{
                         System.out.println(resultado);
                     //Predicado
                     }else if(opcion==2){
-                        
+                        Predicado predi = new Predicado();
+                        String resultado = predi.revisar(operandos);
+                        System.out.println(resultado);
+
                     //ATOM
                     }else if(opcion==3){
-                        
+                        ATOM atom = new ATOM();
+                        String resultado = atom.validar(operandos);
+                        System.out.println(resultado);
                     //SETQ
                     }else if(opcion==4){
                         //agregar al map
@@ -189,7 +194,7 @@ class Driver{
         }else if(ope.contains("<")){
             resultado = 2;
             return resultado;
-        }else if(ope.contains("=")){
+        }else if(ope.contains("equal")){
             resultado = 2;
             return resultado;
         }else if(ope.contains("atom")){
@@ -206,6 +211,9 @@ class Driver{
             return resultado;
         }else if(list==true){
             resultado = 7 ;
+            return resultado;
+        }else if(ope.contains("Cond")){
+            resultado = 2;
             return resultado;
         }
         return resultado;

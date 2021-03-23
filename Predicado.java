@@ -3,74 +3,103 @@ import java.util.Collections;
 
 public class Predicado{
 
-    public String equal (ArrayList<String> dato){
+    public String revisar (ArrayList<String> dato){
         
-        Float num1 = 0f;
-        Float num2=0f;
-        String igualar="";
-        Float resultado = "";
+        String data1;
+        String data2;
+        Float num1;
+        Float num2;
         //arraylist para los numeros y otro para el signo
         ArrayList<Float> numeros = new ArrayList<Float>();
+        ArrayList<String> letra  = new ArrayList<String>();
         ArrayList<String> signos = new ArrayList<String>();
-
-        for(int i=0; i<dato.size();i++){
-            //obtener segun la variable
-            String s =dato.get(i);
-            if(s.equals("<") || s.equals(">") ){
-                signos.add(s);
+        //lectura de los datos
+        for(String s : dato){
+            if(isNumeric(s)){
+                numeros.add(Float.parseFloat(s));
+            }else if(s.equals("equal") || s.equals(">") || s.equals("<")){
+                if(s.equals("equal")){
+                    signos.add("==");
+                }else{
+                    signos.add(s);
+                }
             }else{
-                float f; 
-                try{
-                    f = Float.parseFloat(s);
-                    numeros.add(f);
-                }catch(Exception e){
-                    
+                if(s.equals("Cond")){
+                    //no pasa nada
+                }else{
+                    letra.add(s);
                 }
             }
         }
-        Collections.reverse(numeros);
-        //revisar si ya hay dos datos y en caso que si revisar tambien si ya hay algun operando
-        do{
-            //operar
-            num1 = numeros.get(numeros.size()-1);
-            numeros.remove(numeros.size()-1);
-            num2 = numeros.get(numeros.size()-1);
-            numeros.remove(numeros.size()-1);
-            operacion = signos.get(signos.size()-1);
-            signos.remove(operacion);
-            //operar segun el signo
-            if(igualar.equals(">")){
-                if (num1 > num2){
-                    resultado = Float.parseFloat(num1 + "es Mayor que " + num2);
+        //revisar para enviar resultado
+        if(signos.get(0).equals("==")){
+            if(numeros.size()==2){
+                num1 = numeros.get(0);
+                numeros.remove(0);
+                num2= numeros.get(0);
+                numeros.remove(0);
+                if(num1.equals(num2)){  
+                    return "True";
+                }else{
+                    return "False";
                 }
-                
-            }else if(igualar.equals("<")){
-                if (num1 < num2){
-                    resultado = Float.parseFloat(num1 + "es Mayor que " + num2);
-                }
-            }else if(igualar.equals("=")){
-                if (num1 == num2){
-                    resultado = Float.parseFloat(num1 + "es Igual que " + num2);
-                }
-                else if (num1 != num2){
-                    resultado = Float.parseFloat(num1 + "NO es Igual que " + num2);
+            }else if(numeros.size()==1 && letra.size()==1){
+                return "False";
+            }else{
+                data1 = letra.get(0);
+                letra.remove(0);
+                data2 = letra.get(0);
+                letra.remove(0);
+                if(data1.equals(data2)){
+                    return "True";
+                }else{
+                    return "False";
                 }
             }
-
-            //agregar el resultado al stack
-            numeros.add(resultado);
-        }while(!signos.isEmpty());
-        
-        //resultado
-        if(numeros.size()>=2){
-            return "Este no se puede operar";
-        }else{
-            String resultadoTexto = String.valueOf(resultado);
-            return resultadoTexto;
+        }else if(signos.get(0).equals("<")){
+            if(numeros.size()==2){
+                num1 = numeros.get(0);
+                numeros.remove(0);
+                num2= numeros.get(0);
+                numeros.remove(0);
+                if(num1 < num2){
+                    return "True";
+                }else if(numeros.size()==1 && letra.size()==1){
+                    return "False";
+                }else{
+                    return "False";
+                }
+            }else{
+                return "False";
+            }
+        }else if(signos.get(0).equals(">")){
+            if(numeros.size()==2){
+                num1 = numeros.get(0);
+                numeros.remove(0);
+                num2= numeros.get(0);
+                numeros.remove(0);
+                if(num1 > num2){
+                    return "True";
+                }else if(numeros.size()==1 && letra.size()==1){
+                    return "False";
+                }else{
+                    return "False";
+                }
+            }else{
+                return "False";
+            }
         }
-        return a; 
+        return "no se puede"; 
     }
 
-    
+    //is numeric
+    public static boolean isNumeric(String str) { 
+        try {  
+          Double.parseDouble(str);  
+          return true;
+        } catch(NumberFormatException e){  
+          return false;  
+        }  
+      }
 
 }
