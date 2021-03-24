@@ -1,3 +1,4 @@
+  
 import java.util.ArrayList;
 
 /*
@@ -62,6 +63,9 @@ public class FuncionesExtra{
             return resultado;
         }else if(ope.contains("Cond")){
             resultado = 2;
+            return resultado;
+        }else if(ope.contains("quit")){
+            resultado=8;
             return resultado;
         }
         return resultado;

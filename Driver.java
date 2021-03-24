@@ -108,7 +108,6 @@ class Driver{
                 System.out.println("Esto es de la revision de los numeros: " + revisionNumericos);
                 System.out.println("Esto es el keyset del map: " + funciones.keySet());
                 System.out.println("Esto es el value del map: " + funciones.values());*/
-                System.out.println(operandos);
                 //si hay la misma cantidad de parentesis correr la funcion
                 if(derecha.size()==izquierda.size()){
                     //revisar si tiene 0 parentesis
@@ -167,6 +166,8 @@ class Driver{
                         Lista lis = new Lista();
                         ArrayList<String> resultado = lis.ConvertirLista(operandos);
                         System.out.println(resultado);
+                    }else if(opcion==8){
+                        ciclo=false;
                     }
                 }else{
                     System.out.println("Cantidad de Parentesis incorrecta");
