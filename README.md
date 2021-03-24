@@ -3,7 +3,9 @@ La carpeta llamada Codigo contiene el de factorial, fibonacci y lo de temperatur
 
 Para este proyecto solo es necesario poner () y ya
 Por ejemplo ( + 3 2 ) 
+
 todo tiene que tener un espacio a exepcion del primer (
+
 debe de tener la cantidad de parentesis correcta tambien
 como resultado este imprimira un 5
 
