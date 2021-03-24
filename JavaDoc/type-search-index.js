@@ -1,1 +1,1 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"Aritmetrica"},{"p":"<Unnamed>","l":"ATOM"},{"p":"<Unnamed>","l":"Defun"},{"p":"<Unnamed>","l":"Lista"},{"p":"<Unnamed>","l":"Predicado"},{"p":"<Unnamed>","l":"Quote"}]
+typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"<Unnamed>","l":"Aritmetrica"},{"p":"<Unnamed>","l":"ATOM"},{"p":"<Unnamed>","l":"Defun"},{"p":"<Unnamed>","l":"FuncionesExtra"},{"p":"<Unnamed>","l":"Lista"},{"p":"<Unnamed>","l":"Predicado"},{"p":"<Unnamed>","l":"Quote"}]
