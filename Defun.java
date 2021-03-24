@@ -15,7 +15,7 @@ public class Defun {
        * @param ope
        * @return String
        */
-      static String funcion(ArrayList<String> ope){
+      static String funcion(ArrayList<String> ope, float dato){
         Float num1 = 0f;
         Float num2=0f;
         String operacion;
@@ -60,11 +60,11 @@ public class Defun {
             }
         }
         //pedirle que ingrese el dato para operar
-        System.out.println("Ingrese el dato de " + defun.get(2));
-        float valorFuncion = scanner.nextFloat();
+        /*System.out.println("Ingrese el dato de " + defun.get(2));
+        float valorFuncion = scanner.nextFloat();*/
         for(int i=0; i<numeros.size(); i++){
             if(numeros.get(i)==0){
-                numeros.set(i, valorFuncion);
+                numeros.set(i, dato);
             }
         }
         
@@ -113,7 +113,7 @@ public class Defun {
             if(condiciones.size()==2){
                 //fibonacci
                 //enviar mas datos
-                for(int l=0 ; l<(int)valorFuncion ; l++){
+                for(int l=0 ; l<(int)dato ; l++){
                     cadenaResultado.add(fibonacci(l));
                 }
                 condicionNumero.clear();
@@ -121,7 +121,7 @@ public class Defun {
                 return resultadoTexto;
             }else if(condiciones.size()==1){
                 //factorial
-                String resultadoTexto = String.valueOf(factorial((int)valorFuncion));
+                String resultadoTexto = String.valueOf(factorial((int)dato));
                 condicionNumero.clear();
                 return resultadoTexto;
             }
