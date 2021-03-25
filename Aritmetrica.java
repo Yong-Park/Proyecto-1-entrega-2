@@ -4,6 +4,7 @@ Yong Bum Park, 20117
 Jorge Caballeros Pérez, 20009
 Rolando Natanael Girón, 20029
 */ 
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -40,25 +41,46 @@ public class Aritmetrica {
         Collections.reverse(numeros);
         //revisar si ya hay dos datos y en caso que si revisar tambien si ya hay algun operando
         do{
-            //operar
-            num1 = numeros.get(numeros.size()-1);
-            numeros.remove(numeros.size()-1);
-            num2 = numeros.get(numeros.size()-1);
-            numeros.remove(numeros.size()-1);
-            operacion = signos.get(signos.size()-1);
-            signos.remove(operacion);
-            //operar segun el signo
-            if(operacion.equals("+")){
-                resultado = num1 + num2;
-            }else if(operacion.equals("-")){
-                resultado = num1 - num2; 
-            }else if(operacion.equals("/")){
-                resultado = num1 / num2;
-            }else if(operacion.equals("*")){
-                resultado = num1 * num2;
+            if(signos.size()==1 && numeros.size()>2){
+                //operar
+                num1 = numeros.get(numeros.size()-1);
+                numeros.remove(numeros.size()-1);
+                num2 = numeros.get(numeros.size()-1);
+                numeros.remove(numeros.size()-1);
+                operacion = signos.get(signos.size()-1);
+                //operar segun el signo
+                if(operacion.equals("+")){
+                    resultado = num1 + num2;
+                }else if(operacion.equals("-")){
+                    resultado = num1 - num2; 
+                }else if(operacion.equals("/")){
+                    resultado = num1 / num2;
+                }else if(operacion.equals("*")){
+                    resultado = num1 * num2;
+                }
+                //agregar el resultado al stack
+                numeros.add(resultado); 
+            }else{
+                //operar
+                num1 = numeros.get(numeros.size()-1);
+                numeros.remove(numeros.size()-1);
+                num2 = numeros.get(numeros.size()-1);
+                numeros.remove(numeros.size()-1);
+                operacion = signos.get(signos.size()-1);
+                signos.remove(operacion);
+                //operar segun el signo
+                if(operacion.equals("+")){
+                    resultado = num1 + num2;
+                }else if(operacion.equals("-")){
+                    resultado = num1 - num2; 
+                }else if(operacion.equals("/")){
+                    resultado = num1 / num2;
+                }else if(operacion.equals("*")){
+                    resultado = num1 * num2;
+                }
+                //agregar el resultado al stack
+                numeros.add(resultado);  
             }
-            //agregar el resultado al stack
-            numeros.add(resultado);  
         }while(!signos.isEmpty());
         
         //resultado
@@ -69,5 +91,5 @@ public class Aritmetrica {
             return resultadoTexto;
         }
         
-    }        
+    }    
 }
