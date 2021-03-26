@@ -10,7 +10,6 @@ import java.util.Collections;
 
 public class Defun {
     static ArrayList<String> condicionNumero = new ArrayList<String>();
-      
       /** 
        * @param ope
        * @return String
@@ -100,18 +99,36 @@ public class Defun {
                     contador=0;
                 }                    
             }while(cond.size()!=0);
-            //agregar los datos que son numericos
-            /*System.out.println("Del cond separado " + condSeparado);
-            for(int i=0 ; i<condSeparado.size(); i++){
-                if(isNumeric(condSeparado.get(i))){
-                    System.out.println("es una condicion "+condSeparado.get(i));
-                    condicionNumero.add(condSeparado.get(i));
-                }
-            }*/
             //dependiendo del tamano ejecutar fibonacci o factorial
             ArrayList<Integer> cadenaResultado = new ArrayList<Integer>();
             if(condiciones.size()==2){
                 //fibonacci
+                //el fibonacci de recursividad sin utilizar un metodo ya definido aun no funciona por el cual buscar solucion
+                /*
+                int valorFactorial = (int)dato;
+                int valorFactorialRestar = (int)dato;
+                int y = 0;
+                int t1 = 1;
+                int t2;
+                boolean seguimiento = true;
+                do{
+                    if(valorFactorial == Integer.parseInt(condicionNumero.get(0))){
+                        cadenaResultado.add(Integer.parseInt(condicionNumero.get(1)));
+                        seguimiento=false;  
+                    }else if(valorFactorial == Integer.parseInt(condicionNumero.get(2))){
+                        cadenaResultado.add(Integer.parseInt(condicionNumero.get(3)));
+                        seguimiento=false;
+                    }else{
+                        for(int i = 0; i<valorFactorial; i++){
+                            t2 = y;
+                            y = t1 +  y;
+                            t1 = t2;
+                            cadenaResultado.add(t1);
+                        }
+                        seguimiento = false;
+                    }
+                }while(seguimiento);
+                System.out.println("obtenido del cadenas: " + cadenaResultado);*/
                 //enviar mas datos
                 for(int l=0 ; l<(int)dato ; l++){
                     cadenaResultado.add(fibonacci(l));
@@ -121,8 +138,26 @@ public class Defun {
                 return resultadoTexto;
             }else if(condiciones.size()==1){
                 //factorial
-                String resultadoTexto = String.valueOf(factorial((int)dato));
+                //aplicar la recursividad sin la necesidad de utilizar metodos ya definido.
+                boolean seguimiento = true;
+                //para guardar y utilizar recursividad
+                int valorFactorial = (int)dato;
+                int valorFactorialRestar = (int)dato;
+                do{
+                    if(valorFactorial == Integer.parseInt(condicionNumero.get(0))){
+                        valorFactorial = Integer.parseInt(condicionNumero.get(1));
+                        seguimiento = false;
+                    }else{
+                        if(valorFactorialRestar==1){
+                            seguimiento = false;
+                        }else{
+                            valorFactorial = valorFactorial * (valorFactorialRestar-1);
+                            valorFactorialRestar--;
+                        }
+                    }
+                }while(seguimiento);
                 condicionNumero.clear();
+                String resultadoTexto = String.valueOf(valorFactorial);
                 return resultadoTexto;
             }
             return "Este no se puede operar";
@@ -186,24 +221,7 @@ public class Defun {
             //System.out.println("Debes ingresar un tamaño mayor o igual a 1");
             //return -1; 
         }
-    }
-
-    
-    /** 
-     * @param num
-     * @return int
-     */
-    //metodo de factorial
-    public static int factorial(int num){
-        
-        if(num == Integer.parseInt(condicionNumero.get(0))){
-            return Integer.parseInt(condicionNumero.get(1));
-        }
-        else
-            return num * factorial(num-1);
-    }
-
-    
+    }    
     /** 
      * @param str
      * @return boolean
