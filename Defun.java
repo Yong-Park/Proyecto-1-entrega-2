@@ -7,6 +7,7 @@ Rolando Natanael Girón, 20029
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Stack;
 
 public class Defun {
     static ArrayList<String> condicionNumero = new ArrayList<String>();
@@ -25,6 +26,7 @@ public class Defun {
         ArrayList<String> cond = new ArrayList<String>();
         ArrayList<String> condiciones = new ArrayList<String>();
         ArrayList<String> condSeparado = new ArrayList<String>(); 
+        Stack<Integer> stk = new Stack<>();
         boolean ciclo =true;
         boolean condicion = false;
         //arraylist para los numeros y otro para el signo
@@ -58,9 +60,6 @@ public class Defun {
                 }
             }
         }
-        //pedirle que ingrese el dato para operar
-        /*System.out.println("Ingrese el dato de " + defun.get(2));
-        float valorFuncion = scanner.nextFloat();*/
         for(int i=0; i<numeros.size(); i++){
             if(numeros.get(i)==0){
                 numeros.set(i, dato);
@@ -99,65 +98,60 @@ public class Defun {
                     contador=0;
                 }                    
             }while(cond.size()!=0);
-            //dependiendo del tamano ejecutar fibonacci o factorial
-            ArrayList<Integer> cadenaResultado = new ArrayList<Integer>();
+            
             if(condiciones.size()==2){
                 //fibonacci
                 //el fibonacci de recursividad sin utilizar un metodo ya definido aun no funciona por el cual buscar solucion
-                /*
+                
                 int valorFactorial = (int)dato;
-                int valorFactorialRestar = (int)dato;
-                int y = 0;
-                int t1 = 1;
-                int t2;
                 boolean seguimiento = true;
                 do{
                     if(valorFactorial == Integer.parseInt(condicionNumero.get(0))){
-                        cadenaResultado.add(Integer.parseInt(condicionNumero.get(1)));
                         seguimiento=false;  
                     }else if(valorFactorial == Integer.parseInt(condicionNumero.get(2))){
-                        cadenaResultado.add(Integer.parseInt(condicionNumero.get(3)));
+                        stk.push(Integer.parseInt(condicionNumero.get(3)));
                         seguimiento=false;
                     }else{
-                        for(int i = 0; i<valorFactorial; i++){
-                            t2 = y;
-                            y = t1 +  y;
-                            t1 = t2;
-                            cadenaResultado.add(t1);
+                        stk.push(0);
+                        stk.push(1);
+                        if(dato>2){
+                            for(int i=0; i<(dato-2); i++){
+                                int x = stk.peek();
+                                int y = stk.get(stk.size()-2);
+                                x = x + y;
+                                stk.push(x);
+                            }
                         }
+                        
                         seguimiento = false;
                     }
                 }while(seguimiento);
-                System.out.println("obtenido del cadenas: " + cadenaResultado);*/
-                //enviar mas datos
-                for(int l=0 ; l<(int)dato ; l++){
-                    cadenaResultado.add(fibonacci(l));
-                }
                 condicionNumero.clear();
-                String resultadoTexto = cadenaResultado.toString();
+                String resultadoTexto = stk.toString();
                 return resultadoTexto;
             }else if(condiciones.size()==1){
                 //factorial
                 //aplicar la recursividad sin la necesidad de utilizar metodos ya definido.
                 boolean seguimiento = true;
                 //para guardar y utilizar recursividad
-                int valorFactorial = (int)dato;
-                int valorFactorialRestar = (int)dato;
+                int valorFactorial;
                 do{
-                    if(valorFactorial == Integer.parseInt(condicionNumero.get(0))){
-                        valorFactorial = Integer.parseInt(condicionNumero.get(1));
+                    if((dato) == Integer.parseInt(condicionNumero.get(0))){
+                        stk.push(Integer.parseInt(condicionNumero.get(1)));
                         seguimiento = false;
                     }else{
-                        if(valorFactorialRestar==1){
-                            seguimiento = false;
-                        }else{
-                            valorFactorial = valorFactorial * (valorFactorialRestar-1);
-                            valorFactorialRestar--;
+                        stk.push(1);
+                        for(int i=2; i<=(dato); i++){
+                            valorFactorial = stk.peek();
+                            valorFactorial = valorFactorial * i;
+                            stk.push(valorFactorial);
                         }
+                        seguimiento = false;
                     }
                 }while(seguimiento);
                 condicionNumero.clear();
-                String resultadoTexto = String.valueOf(valorFactorial);
+                String resultadoTexto = String.valueOf(stk.peek());
+                stk.clear();
                 return resultadoTexto;
             }
             return "Este no se puede operar";
@@ -200,28 +194,6 @@ public class Defun {
         }
     }
     
-    
-    /** 
-     * @param n
-     * @return int
-     */
-    //metodo de fibonacci
-    
-    public static int fibonacci (int n){
-        
-        if (n==Integer.parseInt(condicionNumero.get(0))) {  // caso base
-            return Integer.parseInt(condicionNumero.get(1));
-        }
-        else if (n==Integer.parseInt(condicionNumero.get(2))){  // caso base
-            return Integer.parseInt(condicionNumero.get(3));
-        }
-        else{ //error
-            
-            return fibonacci(n-1) + fibonacci(n-2);  //función recursiva
-            //System.out.println("Debes ingresar un tamaño mayor o igual a 1");
-            //return -1; 
-        }
-    }    
     /** 
      * @param str
      * @return boolean

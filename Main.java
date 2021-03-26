@@ -102,12 +102,6 @@ class Driver{
                         }  
                     }
                 }
-                /*System.out.println("Esto es de lo de operandos pero sin sus defun y asi: " + revisionRecursividad);
-                System.out.println("Esto es de lo operandos: " + operandos);
-                System.out.println("Esto es de la revision: " + revision);
-                System.out.println("Esto es de la revision de los numeros: " + revisionNumericos);
-                System.out.println("Esto es el keyset del map: " + funciones.keySet());
-                System.out.println("Esto es el value del map: " + funciones.values());*/
                 //si hay la misma cantidad de parentesis correr la funcion
                 if(derecha.size()==izquierda.size()){
                     //revisar si tiene 0 parentesis
